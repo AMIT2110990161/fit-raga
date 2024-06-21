@@ -12,7 +12,7 @@ export default function Hero() {
                 <h1 className='font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-7xl'>RAGA<span className='text-blue-400'> &fitness</span></h1>
             </div>
             <p className='text-sm md:text-base font-light'>Stop making excuses and start making gains with <span className='text-blue-400 font-medium'>RAGA &fitness. <br /> </span> Push harder, lift heavier, and become unstoppable. Your best body is waiting – claim it now!</p>
-            <div className='flex gap-20'>
+            <div className='flex gap-16'>
                 <Link to={'/Generator'}>
                     <Button text={"Plan your Workouts"}></Button>
                 </Link>
