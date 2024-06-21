@@ -1,10 +1,11 @@
 import React from 'react'
 import Button from './Button'
 import ButtonToRecord from './ButtonToRecord'
+import { Link } from 'react-router-dom'
 
 export default function Hero() {
     return (
-        <div className='min-h-screen flex flex-col gap-10 items-center justify-center text-center max-w-[800px] w-full mx-auto p-4'>
+        <div className='min-h-screen flex flex-col gap-10 items-center justify-center text-center max-w-[800px] w-full mx-auto p-4 ' style={{ marginTop: '-40px' }}>
             <div className='flex flex-col gap-4'>
 
                 <p>IT'S TIME TO GET</p>
@@ -12,9 +13,9 @@ export default function Hero() {
             </div>
             <p className='text-sm md:text-base font-light'>Stop making excuses and start making gains with <span className='text-blue-400 font-medium'>RAGA &fitness. <br /> </span> Push harder, lift heavier, and become unstoppable. Your best body is waiting – claim it now!</p>
             <div className='flex gap-20'>
-                <Button func={() => {
-                    window.location.href = '#generate'
-                }} text={"Plan your Workouts"}></Button>
+                <Link to={'/Generator'}>
+                    <Button text={"Plan your Workouts"}></Button>
+                </Link>
 
                 <ButtonToRecord/>
             </div>

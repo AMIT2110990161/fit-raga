@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SectionWrapper from './SectionWrapper'
 import { SCHEMES, WORKOUTS } from '../utils/swoldier'
 import Button from './Button'
+import { Link } from 'react-router-dom'
 
 function Header(props) {
     const { index, title, description } = props
@@ -19,8 +20,6 @@ function Header(props) {
 export default function Generator(props) {
     const { muscles, setMuscles, poison, setPoison, goal, setGoal, updateWorkout } = props
     const [showModal, setShowModal] = useState(false)
-
-    // let showModal = false
 
     function toggleModal() {
         setShowModal(!showModal)
@@ -46,7 +45,6 @@ export default function Generator(props) {
         if (muscles.length === 2) {
             setShowModal(false)
         }
-
     }
 
     return (
@@ -58,14 +56,14 @@ export default function Generator(props) {
                         <button onClick={() => {
                             setMuscles([])
                             setPoison(type)
-                        }} className={'bg-slate-950 border  duration-200 px-4 hover:border-blue-600 py-3 rounded-lg ' + (type === poison ? ' border-blue-600' : ' border-blue-400')} key={typeIndex}>
+                        }} className={'bg-slate-950 border duration-200 px-4 hover:border-blue-600 py-3 rounded-lg ' + (type === poison ? ' border-blue-600' : ' border-blue-400')} key={typeIndex}>
                             <p className='capitalize'>{type.replaceAll('_', " ")}</p>
                         </button>
                     )
                 })}
             </div>
             <Header index={'02'} title={'Lock on targets'} description={"Select the muscles judged for annihilation."} />
-            <div className='bg-slate-950  border border-solid border-blue-400 rounded-lg flex flex-col'>
+            <div className='bg-slate-950 border border-solid border-blue-400 rounded-lg flex flex-col'>
                 <button onClick={toggleModal} className='relative p-3 flex items-center justify-center'>
                     <p className='capitalize'>{muscles.length == 0 ? 'Select muscle groups' : muscles.join(' ')}</p>
                     <i className="fa-solid absolute right-3 top-1/2 -translate-y-1/2 fa-caret-down"></i>
@@ -90,14 +88,17 @@ export default function Generator(props) {
                     return (
                         <button onClick={() => {
                             setGoal(scheme)
-                        }} className={'bg-slate-950 border  duration-200 hover:border-blue-600 py-3 rounded-lg px-4 ' + (scheme === goal ? ' border-blue-600' : ' border-blue-400')} key={schemeIndex}>
+                        }} className={'bg-slate-950 border duration-200 hover:border-blue-600 py-3 rounded-lg px-4 ' + (scheme === goal ? ' border-blue-600' : ' border-blue-400')} key={schemeIndex}>
                             <p className='capitalize'>{scheme.replaceAll('_', " ")}</p>
                         </button>
                     )
                 })}
             </div>
-            <Button func={updateWorkout} text={"Formulate"}></Button>
+            <div className='flex justify-center items-center mt-4'>
+                <Link to={'/Workout'}>
+                    <Button func={updateWorkout} text={"Formulate"}></Button>
+                </Link>
+            </div>
         </SectionWrapper>
-
     )
 }
