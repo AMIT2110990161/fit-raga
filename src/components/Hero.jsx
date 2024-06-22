@@ -17,7 +17,7 @@ export default function Hero() {
                     <Button text={"Plan your Workouts"}></Button>
                 </Link>
 
-                <ButtonToRecord/>
+                <Link to={'/HomePage'}><ButtonToRecord/></Link>
             </div>
         </div>
     )

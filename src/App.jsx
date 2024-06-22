@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import HomePage from './components/HomePage';
 
 function App() {
   const [workout, setWorkout] = useState(null);
@@ -43,9 +44,15 @@ function App() {
         />
       ),
     },
+
     {
       path: "/Workout",
       element: <Workout workout={workout} />,
+    },
+
+    {
+      path: "/HomePage",
+      element: <HomePage />,
     },
   ]);
 
