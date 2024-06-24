@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from './Button'
-import ButtonToRecord from './ButtonToRecord'
 import { Link } from 'react-router-dom'
 
 export default function Hero() {
@@ -17,7 +16,7 @@ export default function Hero() {
                     <Button text={"Plan your Workouts"}></Button>
                 </Link>
 
-                <Link to={'/HomePage'}><ButtonToRecord/></Link>
+                <Link to={'/HomePage'}><Button text = {"Record your Workout"}></Button></Link>
             </div>
         </div>
     )
