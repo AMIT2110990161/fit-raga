@@ -64,10 +64,10 @@ const WorkoutForm = ({ addWorkout }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+    <form onSubmit={handleSubmit} className="space-y-4 p-4 text-black">
       <input
         type="text"
-        placeholder="Body Part"
+        placeholder="Enter your Split or Body Part"
         value={bodyPart}
         onChange={(e) => setBodyPart(e.target.value)}
         className="w-full p-2 border border-gray-300 rounded"
