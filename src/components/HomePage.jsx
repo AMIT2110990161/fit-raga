@@ -44,7 +44,7 @@ export default function HomePage() {
 
   return (
     <div className="max-w-xlg mx-auto mt-10">
-      <h1 className='font-semibold text-4xl sm:text-2xl md:text-4xl lg:text-5xl mb-10'>RAGA<span className='text-blue-400'>-Workout Tracker</span></h1>
+      <h1 className='font-semibold text-4xl sm:text-3xl md:text-4xl lg:text-5xl mb-10'>RAGA<span className='text-blue-400'>-Workout Tracker</span></h1>
       <button
         onClick={() => setShowForm(!showForm)}
         className="w-full p-2 bg-blue-500 text-white rounded mb-4"
