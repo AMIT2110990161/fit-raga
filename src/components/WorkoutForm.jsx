@@ -77,19 +77,19 @@ const WorkoutForm = ({ addWorkout, updateWorkout, workoutToEdit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 text-black">
+    <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-slate-950 border border-solid border-blue-400 rounded-lg mb-10">
       <input
         type="text"
         placeholder="Enter your Split or Body Part"
         value={bodyPart}
         onChange={(e) => setBodyPart(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded"
+        className="w-full p-2 bg-slate-950 border border-solid border-blue-400 rounded-lg"
       />
       <input
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded"
+        className="w-full p-2 border border-solid border-blue-400 rounded-lg text-black"
       />
       {exercises.map((exercise, exerciseIndex) => (
         <div key={exerciseIndex} className="space-y-2">
@@ -98,7 +98,7 @@ const WorkoutForm = ({ addWorkout, updateWorkout, workoutToEdit }) => {
             placeholder={`Exercise ${exerciseIndex + 1}`}
             value={exercise.name}
             onChange={(e) => handleExerciseChange(exerciseIndex, 'name', e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
+            className="w-full p-2 bg-slate-950 border border-solid border-blue-400 rounded-lg"
           />
           {exercise.sets.map((set, setIndex) => (
             <div key={setIndex} className="space-y-2">
@@ -107,14 +107,14 @@ const WorkoutForm = ({ addWorkout, updateWorkout, workoutToEdit }) => {
                 placeholder={`Weight for set ${setIndex + 1}`}
                 value={set.weight}
                 onChange={(e) => handleSetChange(exerciseIndex, setIndex, 'weight', e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 bg-slate-950 border border-solid border-blue-400 rounded-lg"
               />
               <input
                 type="number"
                 placeholder={`Reps for set ${setIndex + 1}`}
                 value={set.reps}
                 onChange={(e) => handleSetChange(exerciseIndex, setIndex, 'reps', e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 bg-slate-950 border border-solid border-blue-400 rounded-lg"
               />
               <button
                 type="button"
@@ -125,32 +125,36 @@ const WorkoutForm = ({ addWorkout, updateWorkout, workoutToEdit }) => {
               </button>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() => handleAddSet(exerciseIndex)}
-            className="w-full p-2 bg-green-500 text-white rounded"
-          >
-            Add Set
-          </button>
-          <button
-            type="button"
-            onClick={() => handleRemoveExercise(exerciseIndex)}
-            className="w-full p-2 bg-red-500 text-white rounded"
-          >
-            Remove Exercise
-          </button>
+          <div className='flex gap-5'>
+            <button
+              type="button"
+              onClick={() => handleAddSet(exerciseIndex)}
+              className="w-full p-2 bg-green-500 text-white rounded"
+            >
+              Add Set
+            </button>
+            <button
+              type="button"
+              onClick={() => handleRemoveExercise(exerciseIndex)}
+              className="w-full p-2 bg-red-500 text-white rounded"
+            >
+              Remove Exercise
+            </button>
+          </div>
         </div>
       ))}
-      <button
-        type="button"
-        onClick={handleAddExercise}
-        className="w-full p-2 bg-green-500 text-white rounded"
-      >
-        Add Exercise
-      </button>
-      <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
-        {workoutToEdit ? 'Update Workout' : 'Add Workout'}
-      </button>
+      <div className='flex gap-5'>
+        <button
+          type="button"
+          onClick={handleAddExercise}
+          className="w-full p-2 bg-green-500 text-white rounded"
+        >
+          Add Exercise
+        </button>
+        <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
+          {workoutToEdit ? 'Update Workout' : 'Add Workout'}
+        </button>
+      </div>
     </form>
   );
 };

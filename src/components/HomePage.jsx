@@ -47,7 +47,7 @@ export default function HomePage() {
       <h1 className='font-semibold text-4xl sm:text-3xl md:text-4xl lg:text-5xl mb-10'>RAGA<span className='text-blue-400'>-Workout Tracker</span></h1>
       <button
         onClick={() => setShowForm(!showForm)}
-        className="w-full p-2 bg-blue-500 text-white rounded mb-4"
+        className="w-full p-3 bg-slate-950 border border-solid border-blue-400 rounded-lg text-white rounded mb-5"
       >
         {showForm ? 'Hide Form' : 'Add New Workout'}
       </button>

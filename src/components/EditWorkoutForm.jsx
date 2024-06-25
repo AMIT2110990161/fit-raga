@@ -62,6 +62,7 @@ const EditWorkoutForm = ({ workout, index, updateWorkout }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4 text-black">
+      {/* className='bg-slate-950 border border-solid border-blue-400 rounded-lg flex flex-col' */}
       <input
         type="text"
         placeholder="Enter your Split or Body Part"
