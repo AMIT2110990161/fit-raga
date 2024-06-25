@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
-import EditWorkoutForm from './EditWorkoutForm';
 
 export default function HomePage() {
   const [workouts, setWorkouts] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [workoutToEdit, setWorkoutToEdit] = useState(null);
 
   useEffect(() => {
     const savedWorkouts = JSON.parse(localStorage.getItem('workouts'));
@@ -15,43 +15,54 @@ export default function HomePage() {
   }, []);
 
   const addWorkout = (workout) => {
-    const updatedWorkouts = [...workouts, workout];
+    const updatedWorkouts = [workout, ...workouts];
     setWorkouts(updatedWorkouts);
     localStorage.setItem('workouts', JSON.stringify(updatedWorkouts));
+    setShowForm(false);
   };
 
-  const updateWorkout = (index, updatedWorkout) => {
-    const updatedWorkouts = workouts.map((workout, i) =>
-      i === index ? updatedWorkout : workout
+  const updateWorkout = (updatedWorkout) => {
+    const updatedWorkouts = workouts.map((workout) =>
+      workout.date === updatedWorkout.date ? updatedWorkout : workout
     );
     setWorkouts(updatedWorkouts);
     localStorage.setItem('workouts', JSON.stringify(updatedWorkouts));
-    setEditingIndex(null);
+    setWorkoutToEdit(null);
+    setShowForm(false);
   };
 
-  const deleteWorkout = (index) => {
-    const updatedWorkouts = workouts.filter((_, i) => i !== index);
+  const deleteWorkout = (date) => {
+    const updatedWorkouts = workouts.filter((workout) => workout.date !== date);
     setWorkouts(updatedWorkouts);
     localStorage.setItem('workouts', JSON.stringify(updatedWorkouts));
   };
 
-  const handleEdit = (index) => {
-    setEditingIndex(index);
+  const editWorkout = (workout) => {
+    setWorkoutToEdit(workout);
+    setShowForm(true);
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10">
-      <h1 className="text-2xl font-bold text-center mb-6">RAGA-Workout Tracker</h1>
-      {editingIndex !== null ? (
-        <EditWorkoutForm 
-          workout={workouts[editingIndex]} 
-          index={editingIndex} 
+    <div className="max-w-xlg mx-auto mt-10">
+      <h1 className='font-semibold text-4xl sm:text-3xl md:text-4xl lg:text-5xl mb-10'>RAGA<span className='text-blue-400'>-Workout Tracker</span></h1>
+      <button
+        onClick={() => setShowForm(!showForm)}
+        className="w-full p-2 bg-blue-500 text-white rounded mb-4"
+      >
+        {showForm ? 'Hide Form' : 'Add New Workout'}
+      </button>
+      {showForm && (
+        <WorkoutForm
+          addWorkout={addWorkout}
           updateWorkout={updateWorkout}
+          workoutToEdit={workoutToEdit}
         />
-      ) : (
-        <WorkoutForm addWorkout={addWorkout} />
       )}
-      <WorkoutList workouts={workouts} onEdit={handleEdit} onDelete={deleteWorkout} />
+      <WorkoutList
+        workouts={workouts}
+        editWorkout={editWorkout}
+        deleteWorkout={deleteWorkout}
+      />
     </div>
   );
 }

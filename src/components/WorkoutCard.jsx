@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WorkoutCard = ({ workout }) => (
+const WorkoutCard = ({ workout, editWorkout, deleteWorkout }) => (
   <div className="p-4 border border-gray-300 rounded mb-4">
     <h3 className="font-bold flex gap-2">
         {workout.bodyPart}
@@ -16,6 +16,18 @@ const WorkoutCard = ({ workout }) => (
         ))}
       </div>
     ))}
+    <button
+      onClick={() => editWorkout(workout)}
+      className="w-full p-2 bg-yellow-500 text-white rounded mb-2"
+    >
+      Edit Workout
+    </button>
+    <button
+      onClick={() => deleteWorkout(workout.date)}
+      className="w-full p-2 bg-red-500 text-white rounded"
+    >
+      Delete Workout
+    </button>
   </div>
 );
 

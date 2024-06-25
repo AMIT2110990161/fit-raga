@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const WorkoutForm = ({ addWorkout }) => {
+const WorkoutForm = ({ addWorkout, updateWorkout, workoutToEdit }) => {
   const [bodyPart, setBodyPart] = useState('');
   const [date, setDate] = useState('');
   const [exercises, setExercises] = useState([{ name: '', sets: [{ weight: '', reps: '' }] }]);
+
+  useEffect(() => {
+    if (workoutToEdit) {
+      setBodyPart(workoutToEdit.bodyPart);
+      setDate(workoutToEdit.date);
+      setExercises(workoutToEdit.exercises);
+    }
+  }, [workoutToEdit]);
 
   const handleExerciseChange = (index, field, value) => {
     const updatedExercises = exercises.map((exercise, i) =>
@@ -57,7 +65,12 @@ const WorkoutForm = ({ addWorkout }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addWorkout({ bodyPart, date, exercises });
+    const workout = { bodyPart, date, exercises };
+    if (workoutToEdit) {
+      updateWorkout(workout);
+    } else {
+      addWorkout(workout);
+    }
     setBodyPart('');
     setDate('');
     setExercises([{ name: '', sets: [{ weight: '', reps: '' }] }]);
@@ -136,7 +149,7 @@ const WorkoutForm = ({ addWorkout }) => {
         Add Exercise
       </button>
       <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded">
-        Add Workout
+        {workoutToEdit ? 'Update Workout' : 'Add Workout'}
       </button>
     </form>
   );
